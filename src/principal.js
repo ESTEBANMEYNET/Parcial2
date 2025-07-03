@@ -1,4 +1,3 @@
-// Configuración de la API
 const URL_BASE_API = "https://api.thecatapi.com/v1"
 const CLAVE_API = "live_your_api_key_here"
 
@@ -87,26 +86,11 @@ async function cargarImagenRaza(idRaza) {
 }
 
 function manejarBusqueda() {
-  const terminoBusqueda = elementos.entradaBusqueda.value.toLowerCase().trim()
-
-  if (terminoBusqueda === "") {
-    razasFiltradas = [...todasLasRazas]
-  } else {
-    razasFiltradas = todasLasRazas.filter(
-      (raza) =>
-        raza.name.toLowerCase().includes(terminoBusqueda) ||
-        raza.origin.toLowerCase().includes(terminoBusqueda) ||
-        (raza.description && raza.description.toLowerCase().includes(terminoBusqueda)),
-    )
-  }
-
-  aplicarFiltros()
-  renderizarRazas()
+  aplicarTodosLosFiltros()
 }
 
 function manejarFiltro() {
-  aplicarFiltros()
-  renderizarRazas()
+  aplicarTodosLosFiltros()
 }
 
 function manejarOrden() {
@@ -126,12 +110,37 @@ function manejarOrden() {
   renderizarRazas()
 }
 
-function aplicarFiltros() {
-  const filtroOrigen = elementos.filtroOrigen.value
+function aplicarTodosLosFiltros() {
+  razasFiltradas = [...todasLasRazas]
 
+  const terminoBusqueda = elementos.entradaBusqueda.value.toLowerCase().trim()
+  if (terminoBusqueda !== "") {
+    razasFiltradas = razasFiltradas.filter(
+      (raza) =>
+        raza.name.toLowerCase().includes(terminoBusqueda) ||
+        raza.origin.toLowerCase().includes(terminoBusqueda) ||
+        (raza.description && raza.description.toLowerCase().includes(terminoBusqueda)),
+    )
+  }
+
+  const filtroOrigen = elementos.filtroOrigen.value
   if (filtroOrigen) {
     razasFiltradas = razasFiltradas.filter((raza) => raza.origin === filtroOrigen)
   }
+
+  const valorOrden = elementos.selectorOrden.value
+  razasFiltradas.sort((a, b) => {
+    switch (valorOrden) {
+      case "nombre-asc":
+        return a.name.localeCompare(b.name)
+      case "nombre-desc":
+        return b.name.localeCompare(a.name)
+      default:
+        return 0
+    }
+  })
+
+  renderizarRazas()
 }
 
 function configurarFiltros() {
@@ -197,6 +206,7 @@ function navegarADetalles(idRaza) {
   window.location.href = `detalles.html?id=${idRaza}`
 }
 
+// Funciones de Ayuda de UI
 function mostrarCargando(mostrar) {
   elementos.cargando.classList.toggle("oculto", !mostrar)
 }
