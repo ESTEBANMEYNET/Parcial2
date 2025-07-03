@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gatitos</title>
+    <link rel="stylesheet" href="/src/inicio.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="encabezado">
+        <div class="contenedor">
+            <div class="marca-navegacion">
+                <span>Explorador de Gatos</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="principal">
+        <div class="contenedor">
+            <section class="hero">
+                <h1>Explora el Mundo Felino</h1>
+                <p>Descubre diferentes razas de gatos y sus características</p>
+            </section>
+
+            <section class="controles">
+                <div class="contenedor-busqueda">
+                    <input type="text" id="entrada-busqueda" placeholder="Buscar por raza..." class="entrada-busqueda">
+                </div>
+                
+                <div class="filtros">
+                    <label for="filtro-origen" class="visually-hidden">Filtrar por origen</label>
+                    <select id="filtro-origen" class="selector-filtro" title="Filtrar por origen">
+                        <option value="">Todos los orígenes</option>
+                    </select>
+                    
+                    <label for="selector-orden" class="visually-hidden">Ordenar por</label>
+                    <select id="selector-orden" class="selector-filtro" title="Ordenar por">
+                        <option value="nombre-asc">Nombre A-Z</option>
+                        <option value="nombre-desc">Nombre Z-A</option>
+                    </select>
+                </div>
+            </section>
+
+            <div id="cargando" class="cargando oculto">
+                <div class="spinner"></div>
+                <p>Cargando gatos...</p>
+            </div>
+
+            <div id="mensaje-error" class="mensaje-error oculto">
+                <p>Error al cargar los datos. Por favor, intenta nuevamente.</p>
+                <button id="boton-reintentar" class="boton boton-primario">Reintentar</button>
+            </div>
+
+            <section id="grilla-gatos" class="grilla-gatos">
+            </section>
+
+            <div id="sin-resultados" class="sin-resultados oculto">
+                <p>No se encontraron resultados para tu búsqueda</p>
+            </div>
+        </div>
+    </main>
+
+    <div id="contenedor-toast" class="contenedor-toast"></div>
+
+    <script type="module" src="/src/principal.js"></script>
+  </body>
+</html>

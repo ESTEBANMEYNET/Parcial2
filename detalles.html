@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles</title>
+    <link rel="stylesheet" href="/src/detalles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="encabezado">
+        <div class="contenedor">
+            <div class="marca-navegacion">
+                <span>Explorador de Gatos</span>
+            </div>
+            <nav class="enlaces-navegacion">
+                <button id="boton-volver" class="boton-volver">
+                    Volver al inicio
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="principal">
+        <div class="contenedor">
+            <div id="cargando" class="cargando">
+                <div class="spinner"></div>
+                <p>Cargando detalles del gato...</p>
+            </div>
+
+            <div id="mensaje-error" class="mensaje-error oculto">
+                <p>Error al cargar los detalles del gato.</p>
+                <button id="boton-reintentar" class="boton boton-primario">Reintentar</button>
+            </div>
+
+            <div id="detalles-gato" class="detalles-gato oculto">
+            </div>
+        </div>
+    </main>
+
+    <div id="contenedor-toast" class="contenedor-toast"></div>
+
+    <script type="module" src="/src/detalles.js"></script>
+</body>
+</html>
